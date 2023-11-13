@@ -74,11 +74,11 @@ function match(cell_center1,cell_center2,rows1,rows2,cell_match1,cell_match2,cel
             # of z, y, x.  If the value of the element is greater in s1, then increment j
             # else increment i
 
-            ## 664.751 ms (18 allocations: 91.55 MiB)
+            ## 624.751 ms (18 allocations: 91.55 MiB)
             @views stemp .= (s1[i,1:3] .- s2[j,1:3])
             stemp_abs .= abs.(stemp) .> eps # 0 if false, so it is within eps of zero
             count = stemp_abs[3] > 0 ? 3 : (stemp_abs[2] > 0 ? 2 : 1)            
-            stemp_sign = sign(stemp[count])/2
+            stemp_sign = sign(stemp[count])
             # @show i,j,s1[i,:],s2[j,:],stemp,stemp_abs,stemp_sign,count,stemp_sign,sign(stemp[count])
             i += round(Int64,(1-stemp_sign)/2)
             j += round(Int64,(stemp_sign+1)/2)
